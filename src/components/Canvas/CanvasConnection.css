@@ -1,0 +1,52 @@
+/* Canvas Connection Styles */
+
+.canvas-connection {
+    pointer-events: none;
+}
+
+.connection-hitbox {
+    fill: none;
+    stroke: transparent;
+    stroke-width: 20;
+    pointer-events: stroke;
+    cursor: pointer;
+}
+
+.connection-line {
+    fill: none;
+    stroke: var(--pencil-medium);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: stroke 0.2s;
+}
+
+.canvas-connection.hovered .connection-line {
+    stroke: var(--pencil-dark);
+    stroke-width: 3;
+}
+
+/* Delete button */
+.connection-delete {
+    pointer-events: all;
+    cursor: pointer;
+    animation: popIn 0.2s var(--transition-bounce);
+}
+
+.delete-bg {
+    fill: var(--sticky-pink);
+    stroke: var(--pencil-dark);
+    stroke-width: 2;
+    transition: transform 0.2s;
+}
+
+.connection-delete:hover .delete-bg {
+    transform: scale(1.2);
+}
+
+.delete-icon {
+    font-size: 16px;
+    font-weight: bold;
+    fill: var(--pencil-dark);
+    font-family: var(--font-body);
+}

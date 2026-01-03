@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Hand-drawn style brain/lightbulb icon -->
+  <defs>
+    <filter id="sketchy">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" result="turbulence"/>
+      <feDisplacementMap in="SourceGraphic" in2="turbulence" scale="2" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+  </defs>
+  
+  <!-- Pencil stroke style -->
+  <g filter="url(#sketchy)" fill="none" stroke="#2d2d2d" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Lightbulb top -->
+    <path d="M50 15 Q30 20 28 40 Q28 55 38 62 L38 72 L62 72 L62 62 Q72 55 72 40 Q70 20 50 15" />
+    
+    <!-- Lightbulb base lines -->
+    <line x1="38" y1="76" x2="62" y2="76" />
+    <line x1="40" y1="80" x2="60" y2="80" />
+    <line x1="45" y1="84" x2="55" y2="84" />
+    
+    <!-- Inner spark/idea lines -->
+    <line x1="50" y1="30" x2="50" y2="50" />
+    <line x1="40" y1="40" x2="60" y2="40" />
+    
+    <!-- Sparkle rays -->
+    <line x1="20" y1="35" x2="15" y2="32" />
+    <line x1="80" y1="35" x2="85" y2="32" />
+    <line x1="50" y1="5" x2="50" y2="10" />
+  </g>
+</svg>

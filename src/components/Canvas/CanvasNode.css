@@ -1,0 +1,384 @@
+/* Canvas Node Styles */
+
+.canvas-node {
+    position: absolute;
+    border: 2px solid var(--pencil-dark);
+    border-radius: 4px;
+    cursor: grab;
+    transition: box-shadow 0.2s, transform 0.1s;
+    user-select: none;
+    display: flex;
+    flex-direction: column;
+}
+
+.canvas-node:hover {
+    z-index: 10;
+}
+
+.canvas-node.dragging {
+    cursor: grabbing;
+    z-index: 100;
+    opacity: 0.9;
+}
+
+.canvas-node.selected {
+    z-index: 50;
+    box-shadow:
+        0 0 0 3px var(--highlight-blue),
+        6px 6px 0 var(--pencil-faint);
+}
+
+.canvas-node.connecting {
+    box-shadow:
+        0 0 0 3px var(--highlight-green),
+        4px 4px 0 var(--pencil-faint);
+    animation: pulse 1s ease-in-out infinite;
+}
+
+/* Node Types */
+.canvas-node.text {
+    min-height: 60px;
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.canvas-node.sticky {
+    transform: rotate(-1deg);
+    box-shadow: 4px 4px 0 var(--shadow-light);
+}
+
+.canvas-node.sticky:nth-child(even) {
+    transform: rotate(1deg);
+}
+
+.canvas-node.sticky.selected,
+.canvas-node.sticky.dragging {
+    transform: rotate(0deg) scale(1.02);
+}
+
+.canvas-node.shape {
+    background: transparent;
+    border: 3px solid var(--pencil-dark);
+    border-radius: 8px;
+}
+
+.canvas-node.image {
+    background: white;
+    padding: 0;
+    overflow: hidden;
+}
+
+/* Node Colors */
+.canvas-node.node-yellow {
+    background: var(--sticky-yellow);
+}
+
+.canvas-node.node-pink {
+    background: var(--sticky-pink);
+}
+
+.canvas-node.node-blue {
+    background: var(--sticky-blue);
+}
+
+.canvas-node.node-green {
+    background: var(--sticky-green);
+}
+
+.canvas-node.node-orange {
+    background: var(--highlight-orange);
+}
+
+.canvas-node.node-purple {
+    background: var(--highlight-purple);
+}
+
+.canvas-node.image {
+    background: white;
+}
+
+/* Node Content */
+.node-content {
+    flex: 1;
+    padding: 12px;
+    overflow: hidden;
+}
+
+.canvas-node.image .node-content {
+    padding: 0;
+}
+
+.node-text {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--pencil-dark);
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+.node-text .placeholder {
+    color: var(--pencil-faint);
+    font-style: italic;
+    font-family: var(--font-label);
+}
+
+.node-textarea {
+    width: 100%;
+    height: 100%;
+    min-height: 60px;
+    border: none;
+    background: transparent;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--pencil-dark);
+    resize: none;
+    outline: none;
+}
+
+.node-textarea::placeholder {
+    color: var(--pencil-faint);
+    font-family: var(--font-label);
+}
+
+/* Image Node */
+.node-image-container {
+    width: 100%;
+    height: 100%;
+}
+
+.node-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    border-radius: 2px;
+}
+
+.node-image-caption {
+    padding: 8px 12px;
+    font-family: var(--font-label);
+    font-size: 0.9rem;
+    color: var(--pencil-medium);
+    background: rgba(255, 255, 255, 0.9);
+    border-top: 2px solid var(--pencil-faint);
+}
+
+/* Node Controls */
+.node-controls {
+    position: absolute;
+    bottom: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    padding: 8px 12px;
+    background: rgba(255, 255, 255, 0.95);
+    border: 2px solid var(--pencil-dark);
+    border-radius: 20px;
+    box-shadow: 3px 3px 0 var(--pencil-faint);
+    animation: popIn 0.2s var(--transition-bounce);
+    z-index: 100;
+}
+
+.control-group {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+}
+
+.control-group.colors {
+    padding-right: 8px;
+    border-right: 2px solid var(--pencil-faint);
+}
+
+/* Color Buttons */
+.color-btn {
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--pencil-dark);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.color-btn:hover {
+    transform: scale(1.2);
+}
+
+.color-btn.active {
+    box-shadow: 0 0 0 2px white, 0 0 0 4px var(--pencil-dark);
+}
+
+.color-btn.color-yellow {
+    background: var(--sticky-yellow);
+}
+
+.color-btn.color-pink {
+    background: var(--sticky-pink);
+}
+
+.color-btn.color-blue {
+    background: var(--sticky-blue);
+}
+
+.color-btn.color-green {
+    background: var(--sticky-green);
+}
+
+.color-btn.color-orange {
+    background: var(--highlight-orange);
+}
+
+.color-btn.color-purple {
+    background: var(--highlight-purple);
+}
+
+/* Action Buttons */
+.node-controls .action-btn {
+    width: 28px;
+    height: 28px;
+    border: 2px solid var(--pencil-faint);
+    border-radius: 50%;
+    background: var(--paper-bg);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    transition: all 0.2s;
+}
+
+.node-controls .action-btn:hover {
+    border-color: var(--pencil-dark);
+    transform: scale(1.15);
+}
+
+.node-controls .delete-btn:hover {
+    background: var(--highlight-pink);
+}
+
+.node-controls .connect-btn:hover {
+    background: var(--highlight-blue);
+}
+
+.node-controls .duplicate-btn:hover {
+    background: var(--highlight-green);
+}
+
+/* Resize Handle */
+.resize-handle {
+    position: absolute;
+    right: -4px;
+    bottom: -4px;
+    width: 16px;
+    height: 16px;
+    cursor: nwse-resize;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.resize-handle::before {
+    content: '';
+    position: absolute;
+    right: 4px;
+    bottom: 4px;
+    width: 8px;
+    height: 8px;
+    border-right: 2px solid var(--pencil-medium);
+    border-bottom: 2px solid var(--pencil-medium);
+}
+
+.canvas-node:hover .resize-handle,
+.canvas-node.selected .resize-handle {
+    opacity: 1;
+}
+
+/* Connection Points */
+.connection-point {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: var(--pencil-dark);
+    border: 2px solid white;
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 0.2s, transform 0.2s;
+    cursor: crosshair;
+}
+
+.connection-point.top {
+    top: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.connection-point.bottom {
+    bottom: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.connection-point.left {
+    left: -6px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.connection-point.right {
+    right: -6px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.canvas-node.selected .connection-point,
+.canvas-node:hover .connection-point {
+    opacity: 1;
+}
+
+.connection-point:hover {
+    transform: scale(1.3);
+    background: var(--highlight-blue);
+}
+
+/* Touch support */
+@media (pointer: coarse) {
+    .canvas-node {
+        cursor: default;
+    }
+
+    .node-controls {
+        bottom: -60px;
+        padding: 10px 14px;
+    }
+
+    .color-btn {
+        width: 28px;
+        height: 28px;
+    }
+
+    .node-controls .action-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 1rem;
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .node-controls {
+        bottom: -55px;
+        padding: 6px 10px;
+    }
+
+    .color-btn {
+        width: 24px;
+        height: 24px;
+    }
+
+    .node-controls .action-btn {
+        width: 32px;
+        height: 32px;
+        font-size: 1rem;
+    }
+}
