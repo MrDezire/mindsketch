@@ -1,34 +1,31 @@
-/* Canvas Toolbar Styles - Midnight Creative Theme */
+/* Canvas Toolbar Styles */
 
 .canvas-toolbar {
     position: absolute;
-    top: 90px;
-    left: 30px;
+    top: 80px;
+    left: 20px;
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 12px;
     z-index: 50;
 }
 
 .toolbar-group {
     display: flex;
     align-items: center;
-    gap: 12px;
-    padding: 12px 16px;
-    background: var(--bg-glass-heavy);
-    border: 1px solid var(--border-bright);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-premium);
-    backdrop-filter: blur(20px);
+    gap: 8px;
+    padding: 10px 14px;
+    background: rgba(255, 255, 255, 0.92);
+    border: 2px solid var(--pencil-dark);
+    border-radius: 8px;
+    box-shadow: 4px 4px 0 var(--pencil-faint);
+    backdrop-filter: blur(5px);
 }
 
 .toolbar-label {
-    font-family: var(--font-body);
-    font-weight: 600;
-    color: var(--text-muted);
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+    font-family: var(--font-label);
+    color: var(--pencil-medium);
+    font-size: 0.9rem;
     margin-right: 4px;
 }
 
@@ -36,115 +33,110 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 6px;
-    padding: 10px 14px;
-    background: transparent;
-    border: 1px solid var(--border-subtle);
-    border-radius: var(--radius-md);
+    gap: 4px;
+    padding: 8px 12px;
+    background: var(--paper-bg);
+    border: 2px solid var(--pencil-faint);
+    border-radius: 6px;
     cursor: pointer;
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    color: var(--text-main);
+    transition: all 0.2s var(--transition-bounce);
 }
 
 .toolbar-btn:hover {
-    border-color: var(--accent-primary);
-    background: rgba(0, 242, 255, 0.05);
-    color: var(--accent-primary);
+    border-color: var(--pencil-dark);
+    background: var(--highlight-yellow);
     transform: translateY(-2px);
-    box-shadow: var(--shadow-glow);
 }
 
 .toolbar-btn .btn-icon {
-    font-size: 1.4rem;
+    font-size: 1.3rem;
 }
 
 .toolbar-btn .btn-label {
-    font-family: var(--font-body);
-    font-size: 0.7rem;
-    font-weight: 500;
-    color: var(--text-faint);
-}
-
-.toolbar-btn:hover .btn-label {
-    color: var(--accent-primary);
+    font-family: var(--font-label);
+    font-size: 0.75rem;
+    color: var(--pencil-medium);
 }
 
 /* Connecting Notice */
 .connecting-notice {
-    background: rgba(125, 95, 255, 0.15);
-    border-color: var(--accent-secondary);
+    background: var(--highlight-blue);
+    animation: pulse 1.5s ease-in-out infinite;
 }
 
 .notice-text {
     font-family: var(--font-body);
     font-size: 0.95rem;
-    font-weight: 500;
 }
 
 .cancel-btn {
     flex-direction: row;
-    padding: 8px 16px;
-    background: rgba(255, 62, 109, 0.1);
-    border-color: rgba(255, 62, 109, 0.3);
-    color: var(--accent-warm);
+    padding: 6px 12px;
+    background: var(--sticky-pink);
+    border-color: var(--pencil-dark);
 }
 
 .cancel-btn:hover {
-    background: var(--accent-warm);
-    color: white;
+    background: var(--highlight-pink);
 }
 
-/* Tips & Shortcuts */
-.toolbar-tips,
-.toolbar-shortcuts {
-    background: var(--bg-glass);
-    border: 1px dashed var(--border-subtle);
-    opacity: 0.8;
+/* Tips */
+.toolbar-tips {
+    background: rgba(255, 255, 255, 0.7);
+    border-style: dashed;
 }
 
-.toolbar-tips .tip,
-.toolbar-shortcuts .shortcut {
-    font-family: var(--font-body);
-    font-weight: 600;
+.toolbar-tips .tip {
+    font-family: var(--font-label);
+    font-size: 0.85rem;
+}
+
+.toolbar-tips .tip-text {
+    font-family: var(--font-label);
     font-size: 0.8rem;
-    color: var(--text-muted);
+    color: var(--pencil-faint);
+    max-width: 250px;
 }
 
-.toolbar-tips .tip-text,
-.toolbar-shortcuts kbd {
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-}
-
+/* Shortcuts */
 .toolbar-shortcuts {
+    background: rgba(255, 255, 255, 0.7);
+    border-style: dashed;
     flex-direction: column;
     align-items: flex-start;
-    gap: 10px;
+    gap: 6px;
+}
+
+.toolbar-shortcuts .shortcut {
+    font-family: var(--font-label);
+    font-size: 0.85rem;
+    color: var(--pencil-medium);
 }
 
 .shortcuts-list {
     display: flex;
     flex-wrap: wrap;
-    gap: 12px;
+    gap: 8px;
 }
 
 .shortcuts-list span {
-    font-family: var(--font-body);
+    font-family: var(--font-label);
     font-size: 0.75rem;
-    color: var(--text-faint);
+    color: var(--pencil-faint);
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 3px;
 }
 
 .shortcuts-list kbd {
     display: inline-block;
-    padding: 2px 6px;
-    background: var(--bg-dark);
-    border: 1px solid var(--border-subtle);
-    border-radius: var(--radius-sm);
-    color: var(--text-muted);
-    font-weight: 600;
+    padding: 2px 5px;
+    font-family: var(--font-body);
+    font-size: 0.7rem;
+    background: var(--paper-bg);
+    border: 1px solid var(--pencil-faint);
+    border-radius: 3px;
+    box-shadow: 1px 1px 0 var(--pencil-faint);
 }
 
 /* Responsive */

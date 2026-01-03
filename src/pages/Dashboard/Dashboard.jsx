@@ -24,6 +24,7 @@ export default function Dashboard() {
             }
         } catch (err) {
             console.error('Failed to create board:', err);
+            alert(`Failed to create sketchboard. \n\nError: ${err.message}\n\nPlease check your internet connection and ensure you are logged in.`);
         }
         setNewBoardName('');
         setIsCreating(false);
@@ -37,6 +38,7 @@ export default function Dashboard() {
             }
         } catch (err) {
             console.error('Failed to create board:', err);
+            alert(`Failed to create sketchboard. \n\nError: ${err.message}\n\nPlease check your internet connection and ensure you are logged in.`);
         }
     };
 

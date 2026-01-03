@@ -1,52 +1,51 @@
 /* ============================================
-   MindSketch - Midnight Creative Design System
+   MindSketch - Hand-Drawn Doodle Design System
    ============================================ */
-
-/* Import Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono&display=swap');
 
 /* CSS Variables */
 :root {
-  /* Core Colors */
-  --bg-dark: #050505;
-  --bg-surface: #0f1012;
-  --bg-glass: rgba(255, 255, 255, 0.03);
-  --bg-glass-heavy: rgba(15, 16, 18, 0.8);
+  /* Paper Colors */
+  --paper-bg: #f5f1e8;
+  --paper-lines: #e0dcd3;
+  --paper-edge: #d4cfc4;
 
-  /* Accent Colors */
-  --accent-primary: #00f2ff;
-  --accent-secondary: #7d5fff;
-  --accent-tertiary: #00ff88;
-  --accent-warm: #ff3e6d;
-  --accent-gold: #ffb800;
+  /* Pencil Colors */
+  --pencil-dark: #2d2d2d;
+  --pencil-medium: #4a4a4a;
+  --pencil-light: #6b6b6b;
+  --pencil-faint: #9a9a9a;
 
-  /* Text Colors */
-  --text-main: #f8fafc;
-  --text-muted: #94a3b8;
-  --text-faint: #475569;
-  --text-dark: #0f172a;
+  /* Highlight Colors (muted, paper-like) */
+  --highlight-yellow: #f7e9a0;
+  --highlight-blue: #a8d4e6;
+  --highlight-green: #b8e0b8;
+  --highlight-pink: #f0c4d4;
+  --highlight-orange: #f5d4a8;
+  --highlight-purple: #d4c4e8;
 
-  /* Border & Shadows */
-  --border-subtle: rgba(255, 255, 255, 0.1);
-  --border-bright: rgba(255, 255, 255, 0.2);
-  --shadow-glow: 0 0 20px rgba(0, 242, 255, 0.15);
-  --shadow-premium: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+  /* Sticky Note Colors */
+  --sticky-yellow: #fff7b8;
+  --sticky-pink: #ffd4e6;
+  --sticky-blue: #d4ecff;
+  --sticky-green: #d4ffd4;
+
+  /* Shadows (pencil shaded) */
+  --shadow-light: rgba(45, 45, 45, 0.1);
+  --shadow-medium: rgba(45, 45, 45, 0.2);
+  --shadow-dark: rgba(45, 45, 45, 0.3);
 
   /* Fonts */
-  --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
+  --font-heading: 'Gloria Hallelujah', cursive;
+  --font-body: 'Patrick Hand', cursive;
+  --font-label: 'Indie Flower', cursive;
 
   /* Sizes */
-  --radius-sm: 6px;
-  --radius-md: 12px;
-  --radius-lg: 20px;
-  --radius-full: 9999px;
+  --border-sketch: 2px;
+  --radius-sketch: 3px;
 
-  /* Transitions */
-  --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-main: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-spring: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  /* Animation */
+  --transition-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  --transition-organic: cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 /* Reset & Base */
@@ -66,17 +65,25 @@ html {
 
 body {
   font-family: var(--font-body);
-  background-color: var(--bg-dark);
-  color: var(--text-main);
+  background-color: var(--paper-bg);
+  color: var(--pencil-dark);
   line-height: 1.6;
   overflow-x: hidden;
   min-height: 100vh;
 
-  /* Cool Glowing Grid Background */
+  /* Notebook paper texture */
   background-image:
-    radial-gradient(circle at 2px 2px, rgba(255, 255, 255, 0.05) 1px, transparent 0);
+    repeating-linear-gradient(0deg,
+      transparent,
+      transparent 31px,
+      var(--paper-lines) 31px,
+      var(--paper-lines) 32px),
+    repeating-linear-gradient(90deg,
+      transparent,
+      transparent 31px,
+      rgba(224, 220, 211, 0.3) 31px,
+      rgba(224, 220, 211, 0.3) 32px);
   background-size: 32px 32px;
-  background-attachment: fixed;
 }
 
 #root {
@@ -91,25 +98,25 @@ h4,
 h5,
 h6 {
   font-family: var(--font-heading);
-  font-weight: 600;
+  font-weight: 400;
   line-height: 1.3;
-  letter-spacing: -0.02em;
+  letter-spacing: 0.5px;
 }
 
 h1 {
-  font-size: 3rem;
+  font-size: 2.5rem;
 }
 
 h2 {
-  font-size: 2.25rem;
+  font-size: 2rem;
 }
 
 h3 {
-  font-size: 1.75rem;
+  font-size: 1.5rem;
 }
 
 h4 {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
 }
 
 p,
@@ -120,168 +127,170 @@ div {
 
 label,
 .label {
-  font-family: var(--font-body);
-  font-weight: 500;
-  font-size: 0.9rem;
-  color: var(--text-muted);
+  font-family: var(--font-label);
+  font-size: 1rem;
 }
 
 a {
-  color: var(--accent-primary);
+  color: var(--pencil-dark);
   text-decoration: none;
-  transition: color var(--transition-fast);
+  position: relative;
 }
 
 a:hover {
-  color: #fff;
+  text-decoration: underline;
+  text-decoration-style: wavy;
 }
 
-/* Modern Border Utility */
+/* Sketchy Border Utility */
 .sketch-border {
-  border: 1px solid var(--border-bright);
-  border-radius: var(--radius-md);
+  border: var(--border-sketch) solid var(--pencil-dark);
+  border-radius: var(--radius-sketch);
   position: relative;
-  background: var(--bg-glass);
-  backdrop-filter: blur(10px);
 }
 
 .sketch-border::before {
   content: '';
   position: absolute;
-  inset: -1px;
-  border-radius: inherit;
-  padding: 1px;
-  background: linear-gradient(135deg, var(--border-bright), transparent, var(--border-bright));
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
+  inset: -3px;
+  border: 1px solid var(--pencil-faint);
+  border-radius: 5px;
   pointer-events: none;
+  transform: rotate(0.3deg);
 }
 
-/* Modern Premium Button */
+/* Hand-Drawn Button */
 .btn {
-  font-family: var(--font-heading);
-  font-weight: 600;
-  font-size: 1rem;
+  font-family: var(--font-body);
+  font-size: 1.1rem;
   padding: 12px 24px;
-  background: var(--bg-glass);
-  color: var(--text-main);
-  border: 1px solid var(--border-bright);
-  border-radius: var(--radius-md);
+  background: var(--paper-bg);
+  border: 2px solid var(--pencil-dark);
+  border-radius: 4px;
   cursor: pointer;
   position: relative;
-  transition: all var(--transition-main);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  overflow: hidden;
+  transition: all 0.2s var(--transition-bounce);
+  transform: rotate(-0.5deg);
+  box-shadow: 3px 3px 0 var(--pencil-faint);
 }
 
 .btn:hover {
-  background: var(--bg-surface);
-  border-color: var(--accent-primary);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-glow);
+  transform: rotate(0.5deg) translateY(-2px);
+  box-shadow: 4px 5px 0 var(--pencil-medium);
 }
 
 .btn:active {
-  transform: translateY(0);
+  transform: rotate(0deg) translateY(1px);
+  box-shadow: 1px 2px 0 var(--pencil-dark);
 }
 
 .btn-primary {
-  background: var(--accent-primary);
-  color: var(--bg-dark);
-  border: none;
-}
-
-.btn-primary:hover {
-  background: #ffffff;
-  color: var(--bg-dark);
-  box-shadow: 0 0 25px rgba(0, 242, 255, 0.4);
+  background: var(--highlight-yellow);
+  border-color: var(--pencil-dark);
 }
 
 .btn-secondary {
-  background: var(--accent-secondary);
-  color: white;
-  border: none;
+  background: var(--highlight-blue);
 }
 
 .btn-danger {
-  background: var(--accent-warm);
-  color: white;
-  border: none;
+  background: var(--highlight-pink);
 }
 
-/* Sleek Premium Input */
+/* Sketchy Input */
 .input-sketch {
   font-family: var(--font-body);
-  font-size: 1rem;
-  padding: 14px 20px;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-md);
-  color: var(--text-main);
+  font-size: 1.1rem;
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.7);
+  border: 2px solid var(--pencil-medium);
+  border-radius: 3px;
   width: 100%;
-  transition: all var(--transition-main);
+  transition: all 0.2s var(--transition-organic);
+  transform: rotate(-0.3deg);
 }
 
 .input-sketch:focus {
   outline: none;
-  border-color: var(--accent-primary);
-  background: rgba(255, 255, 255, 0.06);
-  box-shadow: 0 0 0 4px rgba(0, 242, 255, 0.1);
+  border-color: var(--pencil-dark);
+  background: rgba(255, 255, 255, 0.9);
+  transform: rotate(0.2deg);
+  box-shadow: 2px 3px 0 var(--pencil-faint);
 }
 
 .input-sketch::placeholder {
-  color: var(--text-faint);
+  color: var(--pencil-faint);
+  font-family: var(--font-label);
 }
 
-/* Glass Card */
+/* Sticky Note Card */
 .sticky-note {
-  background: var(--bg-glass-heavy);
-  backdrop-filter: blur(12px);
-  padding: 24px;
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--border-subtle);
+  background: var(--sticky-yellow);
+  padding: 20px;
+  border-radius: 2px;
   position: relative;
-  box-shadow: var(--shadow-premium);
-  transition: all var(--transition-spring);
+  box-shadow:
+    3px 3px 0 var(--shadow-light),
+    5px 5px 15px var(--shadow-medium);
+  transform: rotate(-1deg);
+  transition: all 0.3s var(--transition-bounce);
+}
+
+.sticky-note::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 20px;
+  background: rgba(200, 200, 200, 0.5);
+  border-radius: 2px;
 }
 
 .sticky-note:hover {
-  transform: translateY(-8px) scale(1.02);
-  border-color: var(--accent-primary);
-  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.6), var(--shadow-glow);
+  transform: rotate(1deg) translateY(-5px) scale(1.02);
+  box-shadow:
+    5px 8px 0 var(--shadow-light),
+    8px 12px 20px var(--shadow-medium);
 }
 
 .sticky-note.pink {
-  border-top: 4px solid var(--accent-warm);
+  background: var(--sticky-pink);
 }
 
 .sticky-note.blue {
-  border-top: 4px solid var(--accent-primary);
+  background: var(--sticky-blue);
 }
 
 .sticky-note.green {
-  border-top: 4px solid var(--accent-tertiary);
+  background: var(--sticky-green);
 }
 
 /* Sketch Card */
 .sketch-card {
-  background: var(--bg-surface);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-lg);
-  padding: 30px;
+  background: var(--paper-bg);
+  border: 2px solid var(--pencil-medium);
+  border-radius: 4px;
+  padding: 24px;
   position: relative;
-  box-shadow: var(--shadow-premium);
-  transition: all var(--transition-main);
+  box-shadow: 4px 4px 0 var(--pencil-faint);
+  transform: rotate(0.3deg);
+  transition: all 0.25s var(--transition-bounce);
+}
+
+.sketch-card::after {
+  content: '';
+  position: absolute;
+  inset: 4px;
+  border: 1px dashed var(--pencil-faint);
+  border-radius: 2px;
+  pointer-events: none;
 }
 
 .sketch-card:hover {
-  transform: translateY(-5px);
-  border-color: var(--accent-primary);
+  transform: rotate(-0.3deg) translateY(-3px);
+  box-shadow: 6px 8px 0 var(--pencil-faint);
 }
 
 /* Tooltip Bubble */
